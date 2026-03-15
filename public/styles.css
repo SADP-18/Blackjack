@@ -1,0 +1,416 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a4d2e 0%, #0d3b1f 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+/* Game Container */
+#game-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 900px;
+    padding: 30px;
+    margin: 20px;
+    border: 3px solid gold;
+}
+
+/* Header */
+#header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+#header h1 {
+    font-size: 2.5em;
+    color: #1a4d2e;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    letter-spacing: 2px;
+}
+
+#header p {
+    color: #666;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* Game Status */
+#game-status {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#status-message {
+    font-size: 1.5em;
+    color: #1a4d2e;
+    background: #f0f7f0;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* Dealer and Player Sections */
+#dealer-section, #player-section {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#dealer-section h3, #player-section h3 {
+    color: #1a4d2e;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    border-left: 4px solid gold;
+    padding-left: 10px;
+}
+
+.card-container {
+    min-height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+    background: #2a5a3a;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Card Styles */
+.card-container span {
+    display: inline-block !important;
+    border: 2px solid #fff !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+    margin: 5px !important;
+    min-width: 70px !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    background: white !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+    transition: transform 0.2s ease !important;
+    cursor: default !important;
+}
+
+.card-container span:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Hidden card special style */
+.card-container span:has(> :contains('HIDDEN')) {
+    background: #333 !important;
+    color: white !important;
+    border: 2px solid gold !important;
+}
+
+/* Scores */
+#dealer-score, #player-score {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #1a4d2e;
+    background: #e9ecef;
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    border: 1px solid gold;
+}
+
+/* Controls */
+#controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#new-game-btn {
+    background: linear-gradient(135deg, #1a4d2e, #0d3b1f);
+    color: white;
+    border: 2px solid gold;
+}
+
+#new-game-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #0d3b1f, #1a4d2e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+#hit-btn {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+#hit-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #c82333, #dc3545);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+#stand-btn {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+    color: #333;
+}
+
+#stand-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #e0a800, #ffc107);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Message Area */
+#message-area {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+    border-left: 4px solid gold;
+}
+
+#game-message {
+    font-size: 1.2em;
+    color: #1a4d2e;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Debug Info */
+#debug-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e9ecef;
+    border-radius: 8px;
+    font-family: monospace;
+    border: 1px dashed #1a4d2e;
+}
+
+#debug-info h4 {
+    color: #1a4d2e;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+#debug-info p {
+    color: #666;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+/* Animations */
+@keyframes dealCard {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+.card-container span {
+    animation: dealCard 0.3s ease-out;
+}
+
+/* Win/Lose animations */
+@keyframes winPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+#game-message:contains('win') {
+    animation: winPulse 0.5s ease-in-out 3;
+    color: #28a745 !important;
+}
+
+#game-message:contains('lose') {
+    color: #dc3545 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #game-container {
+        padding: 15px;
+    }
+    
+    #header h1 {
+        font-size: 2em;
+    }
+    
+    button {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+    
+    .card-container span {
+        min-width: 50px !important;
+        padding: 10px !important;
+        font-size: 1em !important;
+    }
+    
+    #status-message {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    #header h1 {
+        font-size: 1.5em;
+    }
+    
+    #controls {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
+    
+    .card-container {
+        justify-content: center;
+    }
+    
+    .card-container span {
+        min-width: 40px !important;
+        padding: 8px !important;
+        font-size: 0.9em !important;
+    }
+}
+
+/* Card suit colors - additional styling */
+.card-container span[style*="color: red"] {
+    background: #fff0f0 !important;
+}
+
+.card-container span[style*="color: black"] {
+    background: #f0f0f0 !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1a4d2e;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0d3b1f;
+}
+
+/* Focus styles for accessibility */
+button:focus {
+    outline: 3px solid gold;
+    outline-offset: 2px;
+}
+
+/* Loading state */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid gold;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Tooltip for game instructions */
+#controls button[title] {
+    position: relative;
+}
+
+#controls button[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    margin-bottom: 5px;
+    z-index: 1000;
+}
+
+/* Game over state styling */
+#game-container.game-over #dealer-section,
+#game-container.game-over #player-section {
+    opacity: 0.8;
+}
+
+/* Winner announcement styling */
+#game-message.winner {
+    background: gold;
+    color: #1a4d2e !important;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: inline-block;
+}
