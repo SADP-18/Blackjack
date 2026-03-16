@@ -1,3 +1,20 @@
+// TEMPORARY DEBUG - ADD THIS AT THE VERY TOP
+console.log('🔥 INDEX.JS STARTED');
+console.log('__dirname:', __dirname);
+console.log('Files in server:', require('fs').readdirSync(__dirname));
+
+// Add this before your routes
+app.use((req, res, next) => {
+  console.log(`📨 Request: ${req.method} ${req.url}`);
+  next();
+});
+
+// Add this error handler at the bottom
+app.use((err, req, res, next) => {
+  console.error('❌ ERROR:', err);
+  res.status(500).json({ error: err.message, stack: err.stack });
+});
+
 // Main server entry point
 
 require('dotenv').config();
