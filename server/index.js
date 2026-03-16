@@ -13,6 +13,10 @@ app.use(cors()); // uses CORS for frontend
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlendcoded({extended: true })); // Parse URL-encoded bodies 
 
+// Handle favicon requests quickly
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+app.get('/favicon.png', (req, res) => res.status(204).end());
+
 // Request logging middleware
 app.use((req, res, next) => {
     console.log('${new Date().toISOString()} - ${req.method} ${req.path}');
