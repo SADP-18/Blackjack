@@ -78,9 +78,9 @@ app.use((err, req, res, next) => {
 // Start server
 if (require.main === module) {
 app.listen(PORT, () => {
-    console.log(' Black Jack Game Server running on port ${PORT}');
-    console.log(' Server running on port ${PORT}')
-    console.log(' Environment: ${process.env.NODE_ENV || 'development'}');
+    console.log(`Black Jack Game Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
 
 // Graqceful shutdown
