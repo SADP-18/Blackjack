@@ -8,19 +8,25 @@ const apiRoutes = require('./routes.api');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Handle favicon requests quickly
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+app.get('/favicon.png', (req, res) => res.status(204).end());
+
 // Middleware
 app.use(cors()); // uses CORS for frontend
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlendcoded({extended: true })); // Parse URL-encoded bodies 
 
-// Handle favicon requests quickly
-app.get('/favicon.ico', (req, res) => res.status(204).end());
-app.get('/favicon.png', (req, res) => res.status(204).end());
 
 // Request logging middleware
 app.use((req, res, next) => {
     console.log('${new Date().toISOString()} - ${req.method} ${req.path}');
     next();
+});
+
+// BEFORE API routes
+app.get(['/', '/favicon.ico', '/favicon.png'], (req, res) => {
+  res.status(404).json({ error: 'Not an API endpoint' });
 });
 
 // API Routes
